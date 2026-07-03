@@ -1,0 +1,499 @@
+2026-06-18 15:07:25.214 +05:30 [INF] Now listening on: http://localhost:5070
+2026-06-18 15:07:25.267 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-18 15:07:25.269 +05:30 [INF] Hosting environment: Development
+2026-06-18 15:07:25.270 +05:30 [INF] Content root path: C:\Users\chait\Desktop\csharp\Project\ProductApi
+2026-06-18 15:07:27.282 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/ - null null
+2026-06-18 15:07:27.326 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-06-18 15:07:27.333 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/ - 404 0 null 52.9698ms
+2026-06-18 15:07:27.353 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5070/, Response status code: 404
+2026-06-18 15:07:31.470 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/api/Product - null null
+2026-06-18 15:07:31.477 +05:30 [INF] Executing endpoint 'ProductController.GetAll (ProductApi)'
+2026-06-18 15:07:31.497 +05:30 [INF] Route matched with {action = "GetAll", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(QueryParameter) on controller ProductController (ProductApi).
+2026-06-18 15:07:31.903 +05:30 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-18 15:07:32.080 +05:30 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-06-18 15:07:32.082 +05:30 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-06-18 15:07:33.295 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[DeletedAt], [p].[Description], [p].[IsDeleted], [p].[Name], [p].[Price], [p].[UpdatedAt], [p].[stock]
+FROM [Products] AS [p]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-06-18 15:07:33.358 +05:30 [INF] Getting All Products
+2026-06-18 15:07:33.368 +05:30 [INF] Executed action ProductController.GetAll (ProductApi) in 1866.8629ms
+2026-06-18 15:07:33.370 +05:30 [INF] Executed endpoint 'ProductController.GetAll (ProductApi)'
+2026-06-18 15:07:33.373 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+List`1 -> ApiResponse`1
+System.Collections.Generic.List`1[[Product, ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> ApiResponse`1[[System.Collections.Generic.List`1[[ProductDTO, ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]
+   at lambda_method71(Closure, Object, ApiResponse`1, ResolutionContext)
+   at ProductService.GetAllAsync(QueryParameter qs) in C:\Users\chait\Desktop\csharp\Project\ProductApi\Module\Product\Services\ProductService.cs:line 21
+   at ProductController.GetAll(QueryParameter qs) in C:\Users\chait\Desktop\csharp\Project\ProductApi\Module\Product\Controllers\ProductController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-06-18 15:07:33.429 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/api/Product - 500 null text/html; charset=utf-8 1959.3365ms
+2026-06-18 15:07:36.898 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.html - null null
+2026-06-18 15:07:36.977 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.html - 200 null text/html;charset=utf-8 78.7344ms
+2026-06-18 15:07:36.991 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui.css - null null
+2026-06-18 15:07:36.996 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.css - null null
+2026-06-18 15:07:36.996 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-bundle.js - null null
+2026-06-18 15:07:36.996 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.js - null null
+2026-06-18 15:07:36.997 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-18 15:07:37.004 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.css - 304 null null 7.7029ms
+2026-06-18 15:07:37.004 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui.css - 304 null null 12.3064ms
+2026-06-18 15:07:37.008 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.js - 304 null null 11.4276ms
+2026-06-18 15:07:37.022 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-standalone-preset.js - 304 null null 25.5783ms
+2026-06-18 15:07:37.024 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-bundle.js - 304 null null 27.5901ms
+2026-06-18 15:07:37.368 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/v1/swagger.json - null null
+2026-06-18 15:07:37.449 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 81.1707ms
+2026-06-18 15:07:44.448 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/api/Product - null null
+2026-06-18 15:07:44.465 +05:30 [INF] Executing endpoint 'ProductController.GetAll (ProductApi)'
+2026-06-18 15:07:44.467 +05:30 [INF] Route matched with {action = "GetAll", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(QueryParameter) on controller ProductController (ProductApi).
+2026-06-18 15:07:44.484 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[DeletedAt], [p].[Description], [p].[IsDeleted], [p].[Name], [p].[Price], [p].[UpdatedAt], [p].[stock]
+FROM [Products] AS [p]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-06-18 15:07:44.486 +05:30 [INF] Getting All Products
+2026-06-18 15:07:44.488 +05:30 [INF] Executed action ProductController.GetAll (ProductApi) in 19.9209ms
+2026-06-18 15:07:44.490 +05:30 [INF] Executed endpoint 'ProductController.GetAll (ProductApi)'
+2026-06-18 15:07:44.491 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+List`1 -> ApiResponse`1
+System.Collections.Generic.List`1[[Product, ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> ApiResponse`1[[System.Collections.Generic.List`1[[ProductDTO, ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]
+   at lambda_method71(Closure, Object, ApiResponse`1, ResolutionContext)
+   at ProductService.GetAllAsync(QueryParameter qs) in C:\Users\chait\Desktop\csharp\Project\ProductApi\Module\Product\Services\ProductService.cs:line 21
+   at ProductController.GetAll(QueryParameter qs) in C:\Users\chait\Desktop\csharp\Project\ProductApi\Module\Product\Controllers\ProductController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-06-18 15:07:44.498 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/api/Product - 500 null text/plain; charset=utf-8 49.7921ms
+2026-06-18 15:09:16.690 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/api/Product/2 - null null
+2026-06-18 15:09:16.693 +05:30 [INF] Executing endpoint 'ProductController.GetById (ProductApi)'
+2026-06-18 15:09:16.699 +05:30 [INF] Route matched with {action = "GetById", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller ProductController (ProductApi).
+2026-06-18 15:09:16.792 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CreatedAt], [p].[DeletedAt], [p].[Description], [p].[IsDeleted], [p].[Name], [p].[Price], [p].[UpdatedAt], [p].[stock]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2026-06-18 15:09:16.796 +05:30 [INF] Executed action ProductController.GetById (ProductApi) in 95.4211ms
+2026-06-18 15:09:16.797 +05:30 [INF] Executed endpoint 'ProductController.GetById (ProductApi)'
+2026-06-18 15:09:16.798 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Product -> ApiResponse`1
+Product -> ApiResponse`1[[ProductDTO, ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+   at lambda_method90(Closure, Object, ApiResponse`1, ResolutionContext)
+   at ProductService.GetIdByAsync(Int32 id) in C:\Users\chait\Desktop\csharp\Project\ProductApi\Module\Product\Services\ProductService.cs:line 28
+   at ProductController.GetById(Int32 id) in C:\Users\chait\Desktop\csharp\Project\ProductApi\Module\Product\Controllers\ProductController.cs:line 23
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-06-18 15:09:16.805 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/api/Product/2 - 500 null text/plain; charset=utf-8 114.6087ms
+2026-06-18 15:11:15.129 +05:30 [INF] Now listening on: http://localhost:5070
+2026-06-18 15:11:15.173 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-18 15:11:15.174 +05:30 [INF] Hosting environment: Development
+2026-06-18 15:11:15.174 +05:30 [INF] Content root path: C:\Users\chait\Desktop\csharp\Project\ProductApi
+2026-06-18 15:11:23.965 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/ - null null
+2026-06-18 15:11:24.054 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-06-18 15:11:24.069 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/ - 404 0 null 108.5873ms
+2026-06-18 15:11:24.096 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5070/, Response status code: 404
+2026-06-18 15:11:39.823 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/ - null null
+2026-06-18 15:11:39.833 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/ - 404 0 null 10.1962ms
+2026-06-18 15:11:39.833 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5070/, Response status code: 404
+2026-06-18 15:13:08.470 +05:30 [INF] Now listening on: http://localhost:5070
+2026-06-18 15:13:08.523 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-18 15:13:08.523 +05:30 [INF] Hosting environment: Development
+2026-06-18 15:13:08.523 +05:30 [INF] Content root path: C:\Users\chait\Desktop\csharp\Project\ProductApi
+2026-06-18 15:13:22.852 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/ - null null
+2026-06-18 15:13:22.921 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-06-18 15:13:22.935 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/ - 404 0 null 85.8267ms
+2026-06-18 15:13:22.954 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5070/, Response status code: 404
+2026-06-18 15:14:47.114 +05:30 [INF] Now listening on: http://localhost:5070
+2026-06-18 15:14:47.157 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-18 15:14:47.158 +05:30 [INF] Hosting environment: Development
+2026-06-18 15:14:47.158 +05:30 [INF] Content root path: C:\Users\chait\Desktop\csharp\Project\ProductApi
+2026-06-18 15:15:01.919 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/ - null null
+2026-06-18 15:15:01.983 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-06-18 15:15:01.996 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/ - 404 0 null 79.5595ms
+2026-06-18 15:15:02.016 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5070/, Response status code: 404
+2026-06-18 15:15:07.430 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger - null null
+2026-06-18 15:15:07.441 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger - 301 0 null 11.7131ms
+2026-06-18 15:15:07.446 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.html - null null
+2026-06-18 15:15:07.565 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.html - 200 null text/html;charset=utf-8 118.617ms
+2026-06-18 15:15:07.593 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui.css - null null
+2026-06-18 15:15:07.594 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.css - null null
+2026-06-18 15:15:07.597 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-bundle.js - null null
+2026-06-18 15:15:07.597 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.js - null null
+2026-06-18 15:15:07.598 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-18 15:15:07.632 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.js - 200 null application/javascript;charset=utf-8 34.0161ms
+2026-06-18 15:15:07.662 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.css - 200 152 text/css 67.8914ms
+2026-06-18 15:15:07.662 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui.css - 200 26499 text/css 69.7268ms
+2026-06-18 15:15:07.680 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-bundle.js - 200 418599 text/javascript 82.6124ms
+2026-06-18 15:15:07.680 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-standalone-preset.js - 200 76613 text/javascript 81.9883ms
+2026-06-18 15:15:08.629 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/v1/swagger.json - null null
+2026-06-18 15:15:08.649 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/favicon-32x32.png - null null
+2026-06-18 15:15:08.652 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/favicon-32x32.png - 200 628 image/png 2.4337ms
+2026-06-18 15:15:08.753 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 123.3828ms
+2026-06-18 15:15:15.226 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/api/Product/2 - null null
+2026-06-18 15:15:15.232 +05:30 [INF] Executing endpoint 'ProductController.GetById (ProductApi)'
+2026-06-18 15:15:15.265 +05:30 [INF] Route matched with {action = "GetById", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller ProductController (ProductApi).
+2026-06-18 15:15:34.316 +05:30 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-18 15:15:35.000 +05:30 [INF] Executed DbCommand (37ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CreatedAt], [p].[DeletedAt], [p].[Description], [p].[IsDeleted], [p].[Name], [p].[Price], [p].[UpdatedAt], [p].[stock]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2026-06-18 15:16:38.378 +05:30 [INF] Executed action ProductController.GetById (ProductApi) in 83109.5403ms
+2026-06-18 15:16:38.379 +05:30 [INF] Executed endpoint 'ProductController.GetById (ProductApi)'
+2026-06-18 15:16:38.381 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Product -> ApiResponse`1
+Product -> ApiResponse`1[[ProductDTO, ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+   at lambda_method70(Closure, Object, ApiResponse`1, ResolutionContext)
+   at ProductService.GetIdByAsync(Int32 id) in c:\Users\chait\Desktop\csharp\Project\ProductApi\Module\Product\Services\ProductService.cs:line 28
+   at ProductController.GetById(Int32 id) in c:\Users\chait\Desktop\csharp\Project\ProductApi\Module\Product\Controllers\ProductController.cs:line 23
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-06-18 15:16:38.416 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/api/Product/2 - 500 null text/plain; charset=utf-8 83189.3262ms
+2026-06-18 15:16:44.439 +05:30 [INF] Now listening on: http://localhost:5070
+2026-06-18 15:16:44.480 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-18 15:16:44.481 +05:30 [INF] Hosting environment: Development
+2026-06-18 15:16:44.481 +05:30 [INF] Content root path: C:\Users\chait\Desktop\csharp\Project\ProductApi
+2026-06-18 15:17:28.751 +05:30 [INF] Now listening on: http://localhost:5070
+2026-06-18 15:17:28.801 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-18 15:17:28.801 +05:30 [INF] Hosting environment: Development
+2026-06-18 15:17:28.802 +05:30 [INF] Content root path: C:\Users\chait\Desktop\csharp\Project\ProductApi
+2026-06-18 15:17:32.833 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.html - null null
+2026-06-18 15:17:32.981 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.html - 304 null null 149.6348ms
+2026-06-18 15:17:33.038 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui.css - null null
+2026-06-18 15:17:33.038 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.css - null null
+2026-06-18 15:17:33.096 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-bundle.js - null null
+2026-06-18 15:17:33.204 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-18 15:17:33.236 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.js - null null
+2026-06-18 15:17:33.240 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.js - 304 null null 4.4346ms
+2026-06-18 15:17:33.251 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui.css - 304 null null 213.2334ms
+2026-06-18 15:17:33.251 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.css - 304 null null 213.2333ms
+2026-06-18 15:17:33.251 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-standalone-preset.js - 304 null null 77.2774ms
+2026-06-18 15:17:33.251 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-bundle.js - 304 null null 155.3064ms
+2026-06-18 15:17:34.058 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/v1/swagger.json - null null
+2026-06-18 15:17:34.059 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/favicon-32x32.png - null null
+2026-06-18 15:17:34.060 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/favicon-32x32.png - 304 null null 1.0053ms
+2026-06-18 15:17:34.194 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 135.564ms
+2026-06-18 15:17:38.856 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/api/Product/2 - null null
+2026-06-18 15:17:38.863 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-06-18 15:17:38.867 +05:30 [INF] Executing endpoint 'ProductController.GetById (ProductApi)'
+2026-06-18 15:17:38.897 +05:30 [INF] Route matched with {action = "GetById", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller ProductController (ProductApi).
+2026-06-18 15:17:45.531 +05:30 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-18 15:17:46.264 +05:30 [INF] Executed DbCommand (36ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CreatedAt], [p].[DeletedAt], [p].[Description], [p].[IsDeleted], [p].[Name], [p].[Price], [p].[UpdatedAt], [p].[stock]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2026-06-18 15:24:05.446 +05:30 [INF] Now listening on: http://localhost:5070
+2026-06-18 15:24:05.498 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-18 15:24:05.499 +05:30 [INF] Hosting environment: Development
+2026-06-18 15:24:05.500 +05:30 [INF] Content root path: C:\Users\chait\Desktop\csharp\Project\ProductApi
+2026-06-18 15:24:09.552 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.html - null null
+2026-06-18 15:24:09.692 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.html - 304 null null 141.4189ms
+2026-06-18 15:24:09.802 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.css - null null
+2026-06-18 15:24:09.802 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-18 15:24:09.802 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui.css - null null
+2026-06-18 15:24:09.802 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-bundle.js - null null
+2026-06-18 15:24:09.805 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.js - null null
+2026-06-18 15:24:09.829 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.js - 304 null null 24.0632ms
+2026-06-18 15:24:09.831 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui.css - 304 null null 29.6734ms
+2026-06-18 15:24:09.831 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.css - 304 null null 29.6638ms
+2026-06-18 15:24:09.831 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-standalone-preset.js - 304 null null 28.6346ms
+2026-06-18 15:24:09.832 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-bundle.js - 304 null null 29.7753ms
+2026-06-18 15:24:10.595 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/v1/swagger.json - null null
+2026-06-18 15:24:10.607 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/favicon-32x32.png - null null
+2026-06-18 15:24:10.613 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/favicon-32x32.png - 304 null null 5.2951ms
+2026-06-18 15:24:10.711 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 116.2372ms
+2026-06-18 15:24:17.024 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/api/Product/2 - null null
+2026-06-18 15:24:17.032 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-06-18 15:24:17.037 +05:30 [INF] Executing endpoint 'ProductController.GetById (ProductApi)'
+2026-06-18 15:24:17.059 +05:30 [INF] Route matched with {action = "GetById", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller ProductController (ProductApi).
+2026-06-18 15:24:17.472 +05:30 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-18 15:24:17.959 +05:30 [INF] Executed DbCommand (26ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CreatedAt], [p].[DeletedAt], [p].[Description], [p].[IsDeleted], [p].[Name], [p].[Price], [p].[UpdatedAt], [p].[stock]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2026-06-18 15:24:18.030 +05:30 [INF] Executing OkObjectResult, writing value of type 'ApiResponse`1[[ProductDTO, ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-18 15:24:18.064 +05:30 [INF] Executed action ProductController.GetById (ProductApi) in 999.7162ms
+2026-06-18 15:24:18.065 +05:30 [INF] Executed endpoint 'ProductController.GetById (ProductApi)'
+2026-06-18 15:24:18.073 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/api/Product/2 - 200 null application/json; charset=utf-8 1049.2912ms
+2026-06-18 15:24:25.626 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/api/Product - null null
+2026-06-18 15:24:25.630 +05:30 [INF] Executing endpoint 'ProductController.GetAll (ProductApi)'
+2026-06-18 15:24:25.636 +05:30 [INF] Route matched with {action = "GetAll", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(QueryParameter) on controller ProductController (ProductApi).
+2026-06-18 15:24:25.706 +05:30 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-06-18 15:24:25.707 +05:30 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-06-18 15:24:25.717 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[DeletedAt], [p].[Description], [p].[IsDeleted], [p].[Name], [p].[Price], [p].[UpdatedAt], [p].[stock]
+FROM [Products] AS [p]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-06-18 15:24:25.722 +05:30 [INF] Getting All Products
+2026-06-18 15:24:25.731 +05:30 [INF] Executing OkObjectResult, writing value of type 'ApiResponse`1[[System.Collections.Generic.List`1[[ProductDTO, ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-18 15:24:25.740 +05:30 [INF] Executed action ProductController.GetAll (ProductApi) in 100.9434ms
+2026-06-18 15:24:25.742 +05:30 [INF] Executed endpoint 'ProductController.GetAll (ProductApi)'
+2026-06-18 15:24:25.744 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/api/Product - 200 null application/json; charset=utf-8 118.0802ms
+2026-06-18 15:24:43.114 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5070/api/Product - application/json 88
+2026-06-18 15:24:43.118 +05:30 [INF] Executing endpoint 'ProductController.CreateProduct (ProductApi)'
+2026-06-18 15:24:43.128 +05:30 [INF] Route matched with {action = "CreateProduct", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateProduct(CreateProductDTO) on controller ProductController (ProductApi).
+2026-06-18 15:24:43.218 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-06-18 15:24:43.240 +05:30 [INF] Executed action ProductController.CreateProduct (ProductApi) in 108.311ms
+2026-06-18 15:24:43.242 +05:30 [INF] Executed endpoint 'ProductController.CreateProduct (ProductApi)'
+2026-06-18 15:24:43.243 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5070/api/Product - 400 null application/problem+json; charset=utf-8 128.8686ms
+2026-06-18 15:25:16.597 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5070/api/Product - application/json 90
+2026-06-18 15:25:16.602 +05:30 [INF] Executing endpoint 'ProductController.CreateProduct (ProductApi)'
+2026-06-18 15:25:16.604 +05:30 [INF] Route matched with {action = "CreateProduct", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateProduct(CreateProductDTO) on controller ProductController (ProductApi).
+2026-06-18 15:25:16.772 +05:30 [INF] Executed DbCommand (26ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p6='?' (DbType = DateTime2), @p7='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CreatedAt], [DeletedAt], [Description], [IsDeleted], [Name], [Price], [UpdatedAt], [stock])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-06-18 15:25:16.799 +05:30 [INF] Creating product string
+2026-06-18 15:25:16.802 +05:30 [INF] Executing CreatedAtActionResult, writing value of type 'ApiResponse`1[[ProductDTO, ProductApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-18 15:25:16.823 +05:30 [INF] Executed action ProductController.CreateProduct (ProductApi) in 216.1ms
+2026-06-18 15:25:16.825 +05:30 [INF] Executed endpoint 'ProductController.CreateProduct (ProductApi)'
+2026-06-18 15:25:16.826 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5070/api/Product - 201 null application/json; charset=utf-8 229.0793ms
+2026-06-18 15:26:19.536 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - application/json 104
+2026-06-18 15:26:19.541 +05:30 [INF] Executing endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:26:19.548 +05:30 [INF] Route matched with {action = "UpdateProduct", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProduct(Int32, UpdatedProductDTO) on controller ProductController (ProductApi).
+2026-06-18 15:26:19.561 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-06-18 15:26:19.563 +05:30 [INF] Executed action ProductController.UpdateProduct (ProductApi) in 12.0197ms
+2026-06-18 15:26:19.564 +05:30 [INF] Executed endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:26:19.566 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - 400 null application/problem+json; charset=utf-8 29.9107ms
+2026-06-18 15:26:45.543 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - application/json 114
+2026-06-18 15:26:45.546 +05:30 [INF] Executing endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:26:45.549 +05:30 [INF] Route matched with {action = "UpdateProduct", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProduct(Int32, UpdatedProductDTO) on controller ProductController (ProductApi).
+2026-06-18 15:26:45.558 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-06-18 15:26:45.560 +05:30 [INF] Executed action ProductController.UpdateProduct (ProductApi) in 8.7031ms
+2026-06-18 15:26:45.565 +05:30 [INF] Executed endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:26:45.568 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - 400 null application/problem+json; charset=utf-8 25.125ms
+2026-06-18 15:26:56.724 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - application/json 114
+2026-06-18 15:26:56.727 +05:30 [INF] Executing endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:26:56.729 +05:30 [INF] Route matched with {action = "UpdateProduct", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProduct(Int32, UpdatedProductDTO) on controller ProductController (ProductApi).
+2026-06-18 15:26:56.733 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-06-18 15:26:56.737 +05:30 [INF] Executed action ProductController.UpdateProduct (ProductApi) in 5.585ms
+2026-06-18 15:26:56.739 +05:30 [INF] Executed endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:26:56.741 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - 400 null application/problem+json; charset=utf-8 17.1153ms
+2026-06-18 15:27:08.237 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - application/json 115
+2026-06-18 15:27:08.240 +05:30 [INF] Executing endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:27:08.242 +05:30 [INF] Route matched with {action = "UpdateProduct", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProduct(Int32, UpdatedProductDTO) on controller ProductController (ProductApi).
+2026-06-18 15:27:08.246 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-06-18 15:27:08.249 +05:30 [INF] Executed action ProductController.UpdateProduct (ProductApi) in 4.2641ms
+2026-06-18 15:27:08.251 +05:30 [INF] Executed endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:27:08.253 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - 400 null application/problem+json; charset=utf-8 15.7351ms
+2026-06-18 15:27:19.447 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - application/json 115
+2026-06-18 15:27:19.450 +05:30 [INF] Executing endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:27:19.452 +05:30 [INF] Route matched with {action = "UpdateProduct", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProduct(Int32, UpdatedProductDTO) on controller ProductController (ProductApi).
+2026-06-18 15:27:19.455 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-06-18 15:27:19.458 +05:30 [INF] Executed action ProductController.UpdateProduct (ProductApi) in 3.3365ms
+2026-06-18 15:27:19.460 +05:30 [INF] Executed endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:27:19.461 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - 400 null application/problem+json; charset=utf-8 13.9815ms
+2026-06-18 15:27:49.447 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - application/json 115
+2026-06-18 15:27:49.450 +05:30 [INF] Executing endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:27:49.451 +05:30 [INF] Route matched with {action = "UpdateProduct", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProduct(Int32, UpdatedProductDTO) on controller ProductController (ProductApi).
+2026-06-18 15:27:49.461 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-06-18 15:27:49.464 +05:30 [INF] Executed action ProductController.UpdateProduct (ProductApi) in 5.7015ms
+2026-06-18 15:27:49.467 +05:30 [INF] Executed endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:27:49.470 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - 400 null application/problem+json; charset=utf-8 23.3095ms
+2026-06-18 15:29:40.585 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - application/json 115
+2026-06-18 15:29:40.604 +05:30 [INF] Executing endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:29:40.607 +05:30 [INF] Route matched with {action = "UpdateProduct", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProduct(Int32, UpdatedProductDTO) on controller ProductController (ProductApi).
+2026-06-18 15:29:40.616 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-06-18 15:29:40.626 +05:30 [INF] Executed action ProductController.UpdateProduct (ProductApi) in 12.8475ms
+2026-06-18 15:29:40.630 +05:30 [INF] Executed endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:29:40.632 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - 400 null application/problem+json; charset=utf-8 47.4607ms
+2026-06-18 15:29:45.773 +05:30 [INF] Application is shutting down...
+2026-06-18 15:29:50.849 +05:30 [INF] Now listening on: http://localhost:5070
+2026-06-18 15:29:50.900 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-18 15:29:50.902 +05:30 [INF] Hosting environment: Development
+2026-06-18 15:29:50.903 +05:30 [INF] Content root path: C:\Users\chait\Desktop\csharp\Project\ProductApi
+2026-06-18 15:29:53.283 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.html - null null
+2026-06-18 15:29:53.410 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.html - 304 null null 128.2657ms
+2026-06-18 15:29:53.520 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.css - null null
+2026-06-18 15:29:53.520 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui.css - null null
+2026-06-18 15:29:53.522 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-bundle.js - null null
+2026-06-18 15:29:53.522 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.js - null null
+2026-06-18 15:29:53.523 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-18 15:29:53.542 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.js - 304 null null 19.7241ms
+2026-06-18 15:29:53.553 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui.css - 304 null null 34.0191ms
+2026-06-18 15:29:53.553 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-standalone-preset.js - 304 null null 30.4681ms
+2026-06-18 15:29:53.553 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.css - 304 null null 34.0143ms
+2026-06-18 15:29:53.554 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-bundle.js - 304 null null 31.6188ms
+2026-06-18 15:29:54.341 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/v1/swagger.json - null null
+2026-06-18 15:29:54.345 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/favicon-32x32.png - null null
+2026-06-18 15:29:54.350 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/favicon-32x32.png - 304 null null 4.9288ms
+2026-06-18 15:29:54.476 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 135.3175ms
+2026-06-18 15:30:04.580 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - application/json 88
+2026-06-18 15:30:04.589 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-06-18 15:30:04.594 +05:30 [INF] Executing endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:30:04.619 +05:30 [INF] Route matched with {action = "UpdateProduct", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProduct(Int32, UpdatedProductDTO) on controller ProductController (ProductApi).
+2026-06-18 15:30:05.078 +05:30 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-18 15:30:05.561 +05:30 [INF] Executed DbCommand (27ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CreatedAt], [p].[DeletedAt], [p].[Description], [p].[IsDeleted], [p].[Name], [p].[Price], [p].[UpdatedAt], [p].[stock]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2026-06-18 15:30:05.645 +05:30 [INF] Executed action ProductController.UpdateProduct (ProductApi) in 1021.9052ms
+2026-06-18 15:30:05.647 +05:30 [INF] Executed endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:30:05.650 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The property 'Product.Id' is part of a key and so cannot be modified or marked as modified. To change the principal of an existing entity with an identifying foreign key, first delete the dependent and invoke 'SaveChanges', and then associate the dependent with the new principal.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetPropertyModified(IProperty property, Boolean changeState, Boolean isModified, Boolean isConceptualNull, Boolean acceptChanges)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectValueChange(InternalEntityEntry entry, IProperty property)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.LocalDetectChanges(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectChanges(IStateManager stateManager)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.TryDetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at GenericRepository`1.UpdateAsync(T entity) in C:\Users\chait\Desktop\csharp\Project\ProductApi\Repositories\GenericRepository.cs:line 29
+   at ProductService.UpdateAsync(Int32 id, UpdatedProductDTO dto) in C:\Users\chait\Desktop\csharp\Project\ProductApi\Module\Product\Services\ProductService.cs:line 75
+   at ProductController.UpdateProduct(Int32 id, UpdatedProductDTO dto) in C:\Users\chait\Desktop\csharp\Project\ProductApi\Module\Product\Controllers\ProductController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-06-18 15:30:05.693 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - 500 null text/plain; charset=utf-8 1112.3581ms
+2026-06-18 15:30:16.504 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - application/json 77
+2026-06-18 15:30:16.507 +05:30 [INF] Executing endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:30:16.509 +05:30 [INF] Route matched with {action = "UpdateProduct", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProduct(Int32, UpdatedProductDTO) on controller ProductController (ProductApi).
+2026-06-18 15:30:16.590 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CreatedAt], [p].[DeletedAt], [p].[Description], [p].[IsDeleted], [p].[Name], [p].[Price], [p].[UpdatedAt], [p].[stock]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2026-06-18 15:30:16.593 +05:30 [INF] Executed action ProductController.UpdateProduct (ProductApi) in 79.3043ms
+2026-06-18 15:30:16.595 +05:30 [INF] Executed endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:30:16.597 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The property 'Product.Id' is part of a key and so cannot be modified or marked as modified. To change the principal of an existing entity with an identifying foreign key, first delete the dependent and invoke 'SaveChanges', and then associate the dependent with the new principal.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetPropertyModified(IProperty property, Boolean changeState, Boolean isModified, Boolean isConceptualNull, Boolean acceptChanges)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectValueChange(InternalEntityEntry entry, IProperty property)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.LocalDetectChanges(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectChanges(IStateManager stateManager)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.TryDetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at GenericRepository`1.UpdateAsync(T entity) in C:\Users\chait\Desktop\csharp\Project\ProductApi\Repositories\GenericRepository.cs:line 29
+   at ProductService.UpdateAsync(Int32 id, UpdatedProductDTO dto) in C:\Users\chait\Desktop\csharp\Project\ProductApi\Module\Product\Services\ProductService.cs:line 75
+   at ProductController.UpdateProduct(Int32 id, UpdatedProductDTO dto) in C:\Users\chait\Desktop\csharp\Project\ProductApi\Module\Product\Controllers\ProductController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-06-18 15:30:16.607 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5070/api/Product/2004 - 500 null text/plain; charset=utf-8 103.0312ms
+2026-06-18 15:30:30.734 +05:30 [INF] Application is shutting down...
+2026-06-18 15:30:35.905 +05:30 [INF] Now listening on: http://localhost:5070
+2026-06-18 15:30:35.983 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-18 15:30:35.985 +05:30 [INF] Hosting environment: Development
+2026-06-18 15:30:35.986 +05:30 [INF] Content root path: C:\Users\chait\Desktop\csharp\Project\ProductApi
+2026-06-18 15:31:00.392 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.html - null null
+2026-06-18 15:31:00.521 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.html - 304 null null 132.0863ms
+2026-06-18 15:31:00.604 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-bundle.js - null null
+2026-06-18 15:31:00.604 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.css - null null
+2026-06-18 15:31:00.604 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui.css - null null
+2026-06-18 15:31:00.604 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-standalone-preset.js - null null
+2026-06-18 15:31:00.606 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/index.js - null null
+2026-06-18 15:31:00.637 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-standalone-preset.js - 304 null null 32.5659ms
+2026-06-18 15:31:00.637 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.css - 304 null null 33.8413ms
+2026-06-18 15:31:00.637 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui.css - 304 null null 33.8412ms
+2026-06-18 15:31:00.637 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/index.js - 304 null null 30.5111ms
+2026-06-18 15:31:00.637 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/swagger-ui-bundle.js - 304 null null 33.3418ms
+2026-06-18 15:31:01.381 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/v1/swagger.json - null null
+2026-06-18 15:31:01.392 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5070/swagger/favicon-32x32.png - null null
+2026-06-18 15:31:01.398 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/favicon-32x32.png - 304 null null 5.3074ms
+2026-06-18 15:31:01.488 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5070/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 107.2829ms
+2026-06-18 15:31:08.248 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5070/api/Product/2 - application/json 77
+2026-06-18 15:31:08.259 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-06-18 15:31:08.265 +05:30 [INF] Executing endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:31:08.291 +05:30 [INF] Route matched with {action = "UpdateProduct", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProduct(Int32, UpdatedProductDTO) on controller ProductController (ProductApi).
+2026-06-18 15:31:08.746 +05:30 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-06-18 15:31:09.196 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CreatedAt], [p].[DeletedAt], [p].[Description], [p].[IsDeleted], [p].[Name], [p].[Price], [p].[UpdatedAt], [p].[stock]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2026-06-18 15:31:09.321 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p8='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p6='?' (DbType = DateTime2), @p7='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Products] SET [CreatedAt] = @p0, [DeletedAt] = @p1, [Description] = @p2, [IsDeleted] = @p3, [Name] = @p4, [Price] = @p5, [UpdatedAt] = @p6, [stock] = @p7
+OUTPUT 1
+WHERE [Id] = @p8;
+2026-06-18 15:31:09.333 +05:30 [INF] Executing StatusCodeResult, setting HTTP status code 204
+2026-06-18 15:31:09.336 +05:30 [INF] Executed action ProductController.UpdateProduct (ProductApi) in 1041.0465ms
+2026-06-18 15:31:09.339 +05:30 [INF] Executed endpoint 'ProductController.UpdateProduct (ProductApi)'
+2026-06-18 15:31:09.345 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5070/api/Product/2 - 204 null null 1097.2131ms
