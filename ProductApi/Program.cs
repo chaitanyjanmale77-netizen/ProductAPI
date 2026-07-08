@@ -43,6 +43,12 @@ if (!builder.Environment.IsDevelopment() && !string.IsNullOrEmpty(keyVaultUri))
         Console.WriteLine($"Key Vault connection failed: {ex.Message}");
     }
 }
+// Now register DbContext
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
