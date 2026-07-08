@@ -43,7 +43,7 @@ stages:
               containerRegistry: '$(acrConnection)'
               repository: '$(imageName)'
               command: 'buildAndPush'
-              Dockerfile: '**/Dockerfile'
+              Dockerfile: '**/dockerfile'
               tags: |
                 $(Build.BuildId)
 
