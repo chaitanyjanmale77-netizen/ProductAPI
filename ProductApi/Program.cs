@@ -17,10 +17,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(Options =>
-{
-    Options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
 builder.Services.AddAutoMapper(typeof(ProductProfile));
 builder.Services.AddValidatorsFromAssemblyContaining<CreateProductDTOValidator>();
 builder.Services.AddFluentValidationAutoValidation();
