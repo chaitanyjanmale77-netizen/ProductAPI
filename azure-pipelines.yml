@@ -1,0 +1,59 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  acrConnection: 'product-api-acr-connection'
+  azureConnection: 'product-api-azure-connection'
+  acrName: 'productapiacryourname'
+  imageName: 'productapi'
+  appServiceName: 'productapi-app-yourname'
+
+stages:
+  - stage: Build
+    jobs:
+      - job: BuildAndTest
+        steps:
+          - task: UseDotNet@2
+            inputs:
+              version: '9.0.x'
+
+          - script: dotnet restore
+            displayName: 'Restore'
+
+          - script: dotnet build --no-restore --configuration Release
+            displayName: 'Build'
+
+          - script: dotnet test --no-build --configuration Release
+            displayName: 'Test'
+            continueOnError: true
+
+  - stage: DockerBuildPush
+    dependsOn: Build
+    jobs:
+      - job: BuildPushImage
+        steps:
+          - task: Docker@2
+            displayName: 'Build and push image to ACR'
+            inputs:
+              containerRegistry: '$(acrConnection)'
+              repository: '$(imageName)'
+              command: 'buildAndPush'
+              Dockerfile: '**/Dockerfile'
+              tags: |
+                $(Build.BuildId)
+
+  - stage: Deploy
+    dependsOn: DockerBuildPush
+    jobs:
+      - job: DeployToAppService
+        steps:
+          - task: AzureWebAppContainer@1
+            inputs:
+              azureSubscription: '$(azureConnection)'
+              appName: '$(appServiceName)'
+              containers: '$(acrName).azurecr.io/$(imageName):$(Build.BuildId)'
