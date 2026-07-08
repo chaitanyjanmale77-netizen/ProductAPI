@@ -29,6 +29,13 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddScoped<IProductService, ProductService>();
 var app = builder.Build();
+if (!builder.Environment.IsDevelopment())
+  {
+      var keyVaultUri = builder.Configuration["KeyVaultUri"];
+      builder.Configuration.AddAzureKeyVault(
+          new Uri(keyVaultUri),
+          new Azure.Identity.DefaultAzureCredential());
+  }
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
