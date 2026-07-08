@@ -9,9 +9,9 @@ pool:
 variables:
   acrConnection: 'product-api-acr-connection'
   azureConnection: 'product-api-azure-connection'
-  acrName: 'productapiacryourname'
+  acrName: 'productapiacr'
   imageName: 'productapi'
-  appServiceName: 'productapi-app-yourname'
+  appServiceName: 'productapi-app'
 
 stages:
   - stage: Build
